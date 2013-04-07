@@ -43,6 +43,7 @@ public class GUI_Loser implements ActionListener
     {
         Frame.dispose(); //close the window
         parentFrame.dispose(); // and the parent
-    	new Start().createAndShowGUI(); // start over
+    	new Start();
+		Start.createAndShowGUI(); // start over
     }
 }

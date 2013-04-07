@@ -6,12 +6,12 @@ public class EvilHangMan extends HangmanGame {
 	//private String[] Wordlist = new String[235000];// to store the dictionary
 	private LinkedList<String> Wordlist = new LinkedList<String>();
 	private int numWords = 0;// count the number of possible secret words.
-	private int secretStringLength;// the length of the secret string
+	//private int secretStringLength;// the length of the secret string
 	private boolean GuessResult = false;
 
 	public EvilHangMan(int StringLength, int numGuesses) {
 		guessesRemaining = numGuesses;
-		secretStringLength = StringLength;
+		//secretStringLength = StringLength;
 		Scanner Scanner = null;
 		try {
 			Scanner = new Scanner(new File("dictionary.txt"));// read the dictionary
@@ -32,6 +32,7 @@ public class EvilHangMan extends HangmanGame {
 			currentState += "_ ";
 		}
 		Scanner.close();
+		game = this;
 	}
 
 
@@ -57,56 +58,24 @@ public class EvilHangMan extends HangmanGame {
 		if (Character.isLetter(ch) && !RepeatInput(ch)) {
 			// adjust the Wordlist in order to avoid the word with the letter
 			// user guessed
-			int tempWordNum = 0;
-			ListIterator<String> L = Wordlist.listIterator();
-			while (L.hasNext()) {
-				String s = L.next();
-				if (s.indexOf(ch) != -1 && numWords > 1){
-					L.remove();
+			//int tempWordNum = 0;
+			ListIterator<String> wordListIterator = Wordlist.listIterator();
+			while (wordListIterator.hasNext()) {
+				String word = wordListIterator.next();
+				if (word.indexOf(ch) != -1 && numWords > 1){
+					wordListIterator.remove();
 					numWords--;
 					
 				}
 			}
 			
-		/*	for (int i = 0; i < numWords; i++) {
-				for (int j = 0; j < secretStringLength; j++) {
-					if (Wordlist[i].charAt(j) == ch) {
-						break;
-					} else {
-						if (j == secretStringLength - 1) {
-							if (Wordlist[i].charAt(j) != ch) {
-								tempWordNum++;
-							}
-						}
-					}
-				}
-			}
-			// we choose the words that don't contain the letter the user
-			// guessed, and they will be the new possible secret words.
-			String[] temp = new String[tempWordNum];
-			int tempIndex = 0;
-			for (int i = 0; i < numWords; i++) {
-				for (int j = 0; j < secretStringLength; j++) {
-					if (Wordlist[i].charAt(j) == ch) {
-						break;
-					} else {
-						if (j == secretStringLength - 1) {
-							if (Wordlist[i].charAt(j) != ch) {
-								temp[tempIndex] = Wordlist[i];
-								tempIndex++;
-							}
-						}
-					}
-				}
-			}*/
 			if (numWords == 1) {
 
 				secretWord = Wordlist.getFirst();
-				GuessResult = true;
+				if (secretWord.indexOf(ch) != -1)
+					GuessResult = true;
 			} else {
 				secretWord = Wordlist.getFirst();
-				//numWords = tempWordNum;
-				//Wordlist = temp;
 				guessesRemaining--;
 				GuessResult = false;
 			}

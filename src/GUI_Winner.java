@@ -7,8 +7,8 @@ import javax.sound.sampled.*;
 public class GUI_Winner implements ActionListener
 {
     private JFrame parentFrame;
-    private JFrame Congra;
-    private JLabel Des;
+    private JFrame winFrame;
+    private JLabel answerIs;
     private JLabel SecretWord;
     private JLabel GameResult;
     private JButton ReturnBtn;
@@ -17,9 +17,9 @@ public class GUI_Winner implements ActionListener
     public GUI_Winner(String Letters,JFrame frame)
     {
         parentFrame = frame;
-        Congra = new JFrame("You are the winner!!!");
-        bg(Congra);
-        Des = new JLabel("The answer is ");
+        winFrame = new JFrame("You are the winner!!!");
+        bg(winFrame);
+        answerIs = new JLabel("The answer is ");
         
         SecretWord = new JLabel(Letters);
         SecretWord.setFont(new Font("Default",Font.PLAIN,23));
@@ -29,12 +29,12 @@ public class GUI_Winner implements ActionListener
 
         ReturnBtn.addActionListener(this); 
         
-        Congra.add(Des);
-        Congra.add(SecretWord);
-        Congra.add(GameResult);
-        Congra.add(ReturnBtn);
+        winFrame.add(answerIs);
+        winFrame.add(SecretWord);
+        winFrame.add(GameResult);
+        winFrame.add(ReturnBtn);
 
-        Congra.setVisible(true);
+        winFrame.setVisible(true);
 
     }
 
@@ -62,8 +62,9 @@ public class GUI_Winner implements ActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        Congra.dispose();
+        winFrame.dispose();
         parentFrame.dispose();
-    	new Start().createAndShowGUI();
+    	new Start();
+		Start.createAndShowGUI();
     }
 }

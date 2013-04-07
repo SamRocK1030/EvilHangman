@@ -46,6 +46,7 @@ public class NormalHangMan extends HangmanGame
             }
         }
         letterGuessHistory = LetterHistory;
+        
     }   
 
     public int numLettersRemaining()
@@ -69,6 +70,28 @@ public class NormalHangMan extends HangmanGame
  
     public boolean makeGuess(char ch)
     {
+    	/*if (!Character.isLetter(ch)) return false;
+    	if (!RepeatInput(ch)) {
+    		int i = secretWord.indexOf(ch);
+    		if (i == -1) {
+    			guessesRemaining--;
+    			return false;
+    		}
+    		else {
+    			String temp = "";
+    			while (i >= 0) {
+    				temp = temp + ch + " ";
+    				i = secretWord.indexOf(ch, i+1);
+    			}
+    			currentState = temp;
+    			lettersLeft--;
+    			return true;
+    		}
+    	}
+    	return false;
+    	
+    }
+}*/
     	if (Character.isLetter(ch) == false) return false;
         boolean tempB = true;
         letterGuess = ch;
@@ -86,7 +109,8 @@ public class NormalHangMan extends HangmanGame
                     }
                     else
                     {
-                        temp = temp + currentState.charAt(2*j) + currentState.charAt(2*j+1);              
+                        temp = temp + currentState.charAt(2*j) + currentState.charAt(2*j+1); 
+                        System.out.println(temp);
                     }
                 }
                 currentState = temp;
@@ -114,8 +138,4 @@ public class NormalHangMan extends HangmanGame
         }
         else return false;
     }
-    
-   
 }
-    
-       

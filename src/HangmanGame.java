@@ -1,10 +1,13 @@
 import java.util.TreeSet;
 
+import javax.swing.JFrame;
+
 
 
 public abstract class HangmanGame
 {
-
+	public HangmanGame game;
+	public boolean isEvil = true;
     protected String secretWord = "";//To store the secret word
 	protected int guessesRemaining;//to store the number of guess for the user
 	protected String currentState = "";//store the current guessing situation
@@ -83,5 +86,56 @@ public abstract class HangmanGame
 			else
 				return false;
 	}
+	
+    /*
+     * This handles the logic of sending info to the Game object.
+     */
+    public String[] controller(char InputLetter, JFrame frame)
+    {
+    	String[] labels = {"", "", "", ""};
+
+        //handle the user choice, and pass the data to the model
+        char nextLetter = Character.toUpperCase(InputLetter);
+
+        if(game.makeGuess(nextLetter)) 
+        {
+            if(isEvil)//judge whether the hangman is evil
+            {
+                //if in the evil statement, and the user guess right, 
+            	// it means it is the time to turn the evil to the regular hangmam
+                labels[3] = "Yes!";
+                String RealSecretString = game.getSecretWord();
+                int GuessRemaining = game.numGuessesRemaining();
+                TreeSet<Character> LetterHistory = game.lettersGuessed();
+   
+                game = new NormalHangMan(RealSecretString, GuessRemaining,LetterHistory);//turn the evil to regular hangman
+                isEvil = false;
+                game.makeGuess(nextLetter);//re-value the user guess when turn to the regular hangman for the first time
+            }
+            else
+            {
+            	labels[3] = "Yes!";
+            }
+        }
+        else
+        {
+        	labels[3] = "Nope!";
+        }
+
+        labels[1] = ("Secret Word: "+game.displayGameState());
+        labels[2] = (String.valueOf("Guesses Remaining: "+ game.numGuessesRemaining()));
+        if(game.gameOver())
+        {
+            if(game.isWin())
+            {
+                new GUI_Winner(game.displayGameState(),frame);
+            }
+            else
+            {
+                new GUI_Loser(game.getSecretWord(),frame);
+            }
+        }
+        return labels;
+    }
 
 }
