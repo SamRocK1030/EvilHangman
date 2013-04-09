@@ -8,7 +8,7 @@ public class Start extends JPanel
                            implements ActionListener {
     static JFrame frame;
     int numLetters, numGuesses;
-    private JComboBox<Integer> patternList, patternList1;
+    private JComboBox<Integer> numLettersList, numGuessesList;
  
     public Start() {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -44,22 +44,22 @@ public class Start extends JPanel
         JLabel patternLabel1 = new JLabel("Select the number of letters");
         JLabel patternLabel2 = new JLabel("that will be in the word:");
  
-        patternList = new JComboBox<Integer>(numLettersOptions);
-        patternList.setEditable(true);
+        numLettersList = new JComboBox<Integer>(numLettersOptions);
+        numLettersList.setEditable(true);
  
         JLabel patternLabel3 = new JLabel("Select the number of incorrect");
         JLabel patternLabel4 = new JLabel("guesses that are allowed:");
  
-        patternList1 = new JComboBox<Integer>(numGuessesOptions);
-        patternList1.setEditable(true);
+        numGuessesList = new JComboBox<Integer>(numGuessesOptions);
+        numGuessesList.setEditable(true);
         
         JPanel patternPanel = new JPanel();
         patternPanel.setLayout(new BoxLayout(patternPanel,
                                BoxLayout.PAGE_AXIS));
         patternPanel.add(patternLabel1);
         patternPanel.add(patternLabel2);
-        patternList.setAlignmentX(Component.LEFT_ALIGNMENT);
-        patternPanel.add(patternList);
+        numLettersList.setAlignmentX(Component.LEFT_ALIGNMENT);
+        patternPanel.add(numLettersList);
  
         
         JPanel guessPanel = new JPanel();
@@ -67,8 +67,8 @@ public class Start extends JPanel
                                BoxLayout.PAGE_AXIS));
         guessPanel.add(patternLabel3);
         guessPanel.add(patternLabel4);
-        patternList1.setAlignmentX(Component.LEFT_ALIGNMENT);
-        guessPanel.add(patternList1);
+        numGuessesList.setAlignmentX(Component.LEFT_ALIGNMENT);
+        guessPanel.add(numGuessesList);
         
  
         patternPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -85,12 +85,13 @@ public class Start extends JPanel
 
     } 
  
-    public void actionPerformed(ActionEvent e) {
+    @Override
+	public void actionPerformed(ActionEvent e) {
     	//numLetters = (String)(patternList.getSelectedItem());
-    	numLetters = (int) (patternList.getSelectedItem());
-    	numGuesses = (int) (patternList1.getSelectedItem());
+    	numLetters = (int) (numLettersList.getSelectedItem());
+    	numGuesses = (int) (numGuessesList.getSelectedItem());
     	frame.dispose();
-    	new MainGameGUI(numLetters, numGuesses).show();
+    	new MainGame_GUI(numLetters, numGuesses).show();
 
     }
 

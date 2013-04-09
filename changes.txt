@@ -1,0 +1,14 @@
+renamed boolean tempB in NormalHangman to currentGuessIsCorrect
+        string temp in normalhangman to tempState
+renamed GUI_PlayGame class to MainGame_GUI
+
+the numLetterOptions and numGuessesOptions variables in start are now Integer arrays so we don't have to parse a string to get integer values.
+
+numLetters and numGuesses fields were changed to type int
+
+remove unused imports from GUI_Winner/GUI_Loser : java.io and javax.sound.sampled
+
+winFrame becomes gameOverFrame
+answerIs field not needed in GUI_Winner???
+
+consolidated GUI_Winner/GUI_Loser into GameOver_GUI

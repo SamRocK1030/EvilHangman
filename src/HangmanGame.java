@@ -128,11 +128,11 @@ public abstract class HangmanGame
         {
             if(game.isWin())
             {
-                new GUI_Winner(game.displayGameState(),frame);
+                new GameOver_GUI(game.displayGameState(), game.isWin(), frame);
             }
             else
             {
-                new GUI_Loser(game.getSecretWord(),frame);
+                new GameOver_GUI(game.getSecretWord(), game.isWin(), frame);
             }
         }
         return labels;

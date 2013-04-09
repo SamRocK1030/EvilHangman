@@ -42,18 +42,23 @@ public class NormalHangMan extends HangmanGame
         
     }   
 
-    public int numLettersRemaining()
+    @Override
+	public int numLettersRemaining()
     {
         return lettersLeft;
     }
-    public boolean isWin()
+    
+    @Override
+	public boolean isWin()
     {
         if(guessesRemaining == 0)
             return false;//if the user have no chance to guess again, it means the user loses.
         else
             return true;
     }
-    public boolean gameOver()
+    
+    @Override
+	public boolean gameOver()
     {
         if(guessesRemaining == 0 || lettersLeft == 0)
             return true;
@@ -61,7 +66,8 @@ public class NormalHangMan extends HangmanGame
             return false;
     }
  
-    public boolean makeGuess(char ch)
+    @Override
+	public boolean makeGuess(char ch)
     {
     	if (Character.isLetter(ch) == false) 
     		return false;

@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class MainGameGUI implements ActionListener
+public class MainGame_GUI implements ActionListener
 {
     private JFrame frame;
     private JLabel label1;
@@ -13,7 +13,7 @@ public class MainGameGUI implements ActionListener
     private JLabel result;
 
 
-    public MainGameGUI(int letters, int guesses)
+    public MainGame_GUI(int letters, int guesses)
     {
     	game = new EvilHangMan(letters, guesses);
     	
@@ -71,7 +71,8 @@ public class MainGameGUI implements ActionListener
     /*
      * This is called when the user clicks any of the buttons in the UI.
      */
-    public void actionPerformed(ActionEvent e)
+    @Override
+	public void actionPerformed(ActionEvent e)
     {
         //to figure out which button the user pressed
         JButton temp = (JButton)e.getSource();
