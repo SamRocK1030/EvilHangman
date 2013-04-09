@@ -1,10 +1,8 @@
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
-import java.util.TreeSet;
 
-public class GUI_PlayGame implements ActionListener
+public class MainGameGUI implements ActionListener
 {
     private JFrame frame;
     private JLabel label1;
@@ -15,7 +13,7 @@ public class GUI_PlayGame implements ActionListener
     private JLabel result;
 
 
-    public GUI_PlayGame(int letters, int guesses)
+    public MainGameGUI(int letters, int guesses)
     {
     	game = new EvilHangMan(letters, guesses);
     	

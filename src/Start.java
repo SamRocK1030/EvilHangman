@@ -2,57 +2,55 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-//import javax.swing.border.*;
-//import java.util.*;
-//import java.text.SimpleDateFormat;
  
 
 public class Start extends JPanel
                            implements ActionListener {
     static JFrame frame;
-    String numLetters, numGuesses;
-    private JComboBox patternList, patternList1;
+    int numLetters, numGuesses;
+    private JComboBox<Integer> patternList, patternList1;
  
     public Start() {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        String[] numLettersOptions = {
-                 "4",
-                 "5",
-                 "6",
-                 "7",
-                 "8",
-                 "9",
-                 "10",
-                 };
-        numLetters = numLettersOptions[0];
- 
-        String[] numGuessesOptions = {
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "10",
-                "11",
-                "12",
-                "13",
-                "14",
-                "15",
-                "16",
+   
+        Integer[] numLettersOptions = {
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                };
+       numLetters = numLettersOptions[0];
+       
+        Integer[] numGuessesOptions = {
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
                 };
         numGuesses = numGuessesOptions[0];
 
         JLabel patternLabel1 = new JLabel("Select the number of letters");
         JLabel patternLabel2 = new JLabel("that will be in the word:");
  
-        patternList = new JComboBox(numLettersOptions);
+        patternList = new JComboBox<Integer>(numLettersOptions);
         patternList.setEditable(true);
  
         JLabel patternLabel3 = new JLabel("Select the number of incorrect");
         JLabel patternLabel4 = new JLabel("guesses that are allowed:");
  
-        patternList1 = new JComboBox(numGuessesOptions);
+        patternList1 = new JComboBox<Integer>(numGuessesOptions);
         patternList1.setEditable(true);
         
         JPanel patternPanel = new JPanel();
@@ -88,10 +86,11 @@ public class Start extends JPanel
     } 
  
     public void actionPerformed(ActionEvent e) {
-    	numLetters = (String)(patternList.getSelectedItem());
-    	numGuesses = (String)(patternList1.getSelectedItem());
+    	//numLetters = (String)(patternList.getSelectedItem());
+    	numLetters = (int) (patternList.getSelectedItem());
+    	numGuesses = (int) (patternList1.getSelectedItem());
     	frame.dispose();
-    	new GUI_PlayGame(Integer.parseInt(numLetters), Integer.parseInt(numGuesses)).show();
+    	new MainGameGUI(numLetters, numGuesses).show();
 
     }
 

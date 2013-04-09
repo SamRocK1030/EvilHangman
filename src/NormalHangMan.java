@@ -10,14 +10,7 @@
 import java.util.*;
 public class NormalHangMan extends HangmanGame
 {
-    
-
-	//private String secretWord = "";//To store the secret word
-   // private int guessesRemaining;//to store the number of guess for the user
     private int lettersLeft;//to store the number of the letters in the secret word has not been guessed correctly
-   // private String currentState = "";//store the current guessing situation
-   // private String letterGuessHistory = "";//store the letter user has tried
-   // private char letterGuess;//the letter the user guess right now
 
     /**
      * Constructor sets up the game to be played with a word and some number of
@@ -70,63 +63,42 @@ public class NormalHangMan extends HangmanGame
  
     public boolean makeGuess(char ch)
     {
-    	/*if (!Character.isLetter(ch)) return false;
-    	if (!RepeatInput(ch)) {
-    		int i = secretWord.indexOf(ch);
-    		if (i == -1) {
-    			guessesRemaining--;
-    			return false;
-    		}
-    		else {
-    			String temp = "";
-    			while (i >= 0) {
-    				temp = temp + ch + " ";
-    				i = secretWord.indexOf(ch, i+1);
-    			}
-    			currentState = temp;
-    			lettersLeft--;
-    			return true;
-    		}
-    	}
-    	return false;
-    	
-    }
-}*/
-    	if (Character.isLetter(ch) == false) return false;
-        boolean tempB = true;
+    	if (Character.isLetter(ch) == false) 
+    		return false;
+        
+    	boolean currentGuessIsCorrect = true;
         letterGuess = ch;
         int i;
         for(i = 0; i < secretWord.length(); i++)
         {
             if(secretWord.charAt(i) == ch)//if the user guess right, adjust the current state.
             {
-                String temp = "";
+                String tempState = "";
                 for(int j = 0; j < secretWord.length(); j++)
                 {
                     if(secretWord.charAt(j) == ch)
                     {
-                        temp = temp + ch + " ";
+                        tempState = tempState + ch + " ";
                     }
                     else
                     {
-                        temp = temp + currentState.charAt(2*j) + currentState.charAt(2*j+1); 
-                        System.out.println(temp);
+                        tempState = tempState + currentState.charAt(2*j) + currentState.charAt(2*j+1); 
                     }
                 }
-                currentState = temp;
-                tempB = true;
+                currentState = tempState;
+                currentGuessIsCorrect = true;
                 break;
             }
             else
             {
-                tempB = false;
+                currentGuessIsCorrect = false;
             }
         }
         if(!RepeatInput(ch))
         {
             letterGuessHistory.add(letterGuess);
 
-            if(tempB)
+            if(currentGuessIsCorrect)
             {
                 lettersLeft--;
             }
@@ -134,7 +106,7 @@ public class NormalHangMan extends HangmanGame
             {
                 guessesRemaining--;
             }
-            return tempB;
+            return currentGuessIsCorrect;
         }
         else return false;
     }
