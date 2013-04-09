@@ -7,7 +7,7 @@ public class GameOver_GUI implements ActionListener
 {
     private JFrame parentFrame;
     private JFrame gameOverFrame;
-    private JLabel answerIs;//not needed?
+    private JLabel answerIs;
     private JLabel secretWord;
     private JLabel gameResult;
     private JButton returnButton;
